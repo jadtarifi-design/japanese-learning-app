@@ -261,5 +261,17 @@ def main():
             st.success(f"Great job! {len(ids_to_commit)} words added to studied list.")
             st.rerun()
 
+    # Sidebar for Settings
+    with st.sidebar:
+        st.header("⚙️ Settings")
+        st.write("Manage your learning progress.")
+        
+        if st.button("Reset All Progress", type="secondary", help="This will delete your history and start over."):
+            if os.path.exists(engine.user_state_path):
+                os.remove(engine.user_state_path)
+            st.session_state.clear()
+            st.rerun()
+
+
 if __name__ == "__main__":
     main()
